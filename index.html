@@ -258,6 +258,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/03/ti-scrollview/" itemprop="url">
+                  ti_scrollview
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T22:19:49+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Titanium-ScrollView做成widget时的一些局限"><a href="#Titanium-ScrollView做成widget时的一些局限" class="headerlink" title="Titanium ScrollView做成widget时的一些局限"></a>Titanium ScrollView做成widget时的一些局限</h1><p>在开发中遇到这样的需求：输入身高/体重时，需要使用可以滑动的刻度尺输入，素材只有一张图片（有刻度，没有刻度文字）</p>
+<p>开发思路就是在一个ScrollView中，放入n张图片，然后在图片上添加文字label</p>
+<p>写demo的时候在ios和android上一切正常，标尺滑动也非常流畅，但当这个组件封装成widget之后，在ios上滑动非常不流畅，经过反复验证，发现是在scroll listener中修改label的text时导致的，按照ti与native交互的原理，问题应该是scroll事件触发太频繁，修改UI的任务太多，导致响应慢。但是非widget方式却不存在这个问题，莫非是require会导致性能下降？真正的原因还不得而知。</p>
+<p>尝试了使用_.defer，没什么改善</p>
+<p>最后为了实现功能，只好将更新UI的代码放在了dragend事件的监听中</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/02/reading/" itemprop="url">
                   reading
                 </a>
@@ -317,7 +415,7 @@
 </li>
 <li><p>添加CodePush.codeproj的Hearder search Paths<br>$(inherited)<br>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include<br>$(SRCROOT)/../../react-native/React/<strong><br>$(SRCROOT)/../Examples/CodePushDemoApp/node_modules/react-native/React/</strong></p>
 </li>
-<li><p>添加其它需要的配置，参加wechat模块readme</p>
+<li><p>添加其它需要的配置，参考wechat模块readme</p>
 </li>
 </ol>
 <h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://github.com/weflex/react-native-wechat" target="_blank" rel="external">https://github.com/weflex/react-native-wechat</a></p>
@@ -390,7 +488,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -400,7 +498,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

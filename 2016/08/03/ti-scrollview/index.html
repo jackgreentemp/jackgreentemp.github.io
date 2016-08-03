@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Titanium," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="工匠之路慢慢修炼">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="Titanium ScrollView做成widget时的一些局限在开发中遇到这样的需求：输入身高/体重时，需要使用可以滑动的刻度尺输入，素材只有一张图片（有刻度，没有刻度文字）
+开发思路就是在一个ScrollView中，放入n张图片，然后在图片上添加文字label
+写demo的时候在ios和android上一切正常，标尺滑动也非常流畅，但当这个组件封装成widget之后，在ios上滑动非常不流畅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ti_scrollview">
+<meta property="og:url" content="http://yoursite.com/2016/08/03/ti-scrollview/index.html">
 <meta property="og:site_name" content="小工程序员">
-<meta property="og:description" content="工匠之路慢慢修炼">
-<meta property="og:updated_time" content="2016-08-02T03:58:29.206Z">
+<meta property="og:description" content="Titanium ScrollView做成widget时的一些局限在开发中遇到这样的需求：输入身高/体重时，需要使用可以滑动的刻度尺输入，素材只有一张图片（有刻度，没有刻度文字）
+开发思路就是在一个ScrollView中，放入n张图片，然后在图片上添加文字label
+写demo的时候在ios和android上一切正常，标尺滑动也非常流畅，但当这个组件封装成widget之后，在ios上滑动非常不流畅">
+<meta property="og:updated_time" content="2016-08-03T14:29:38.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="工匠之路慢慢修炼">
+<meta name="twitter:title" content="ti_scrollview">
+<meta name="twitter:description" content="Titanium ScrollView做成widget时的一些局限在开发中遇到这样的需求：输入身高/体重时，需要使用可以滑动的刻度尺输入，素材只有一张图片（有刻度，没有刻度文字）
+开发思路就是在一个ScrollView中，放入n张图片，然后在图片上添加文字label
+写demo的时候在ios和android上一切正常，标尺滑动也非常流畅，但当这个组件封装成widget之后，在ios上滑动非常不流畅">
 
 
 
@@ -114,15 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/03/ti-scrollview/"/>
 
-  <title>
-  
-
-  
-    分类 | 小工程序员
-  
-</title>
+  <title> ti_scrollview | 小工程序员 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +143,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,16 +243,122 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            暂无分类
-        </div>
-        <div class="category-all">
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ti_scrollview
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T22:19:49+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
           
         </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Titanium-ScrollView做成widget时的一些局限"><a href="#Titanium-ScrollView做成widget时的一些局限" class="headerlink" title="Titanium ScrollView做成widget时的一些局限"></a>Titanium ScrollView做成widget时的一些局限</h1><p>在开发中遇到这样的需求：输入身高/体重时，需要使用可以滑动的刻度尺输入，素材只有一张图片（有刻度，没有刻度文字）</p>
+<p>开发思路就是在一个ScrollView中，放入n张图片，然后在图片上添加文字label</p>
+<p>写demo的时候在ios和android上一切正常，标尺滑动也非常流畅，但当这个组件封装成widget之后，在ios上滑动非常不流畅，经过反复验证，发现是在scroll listener中修改label的text时导致的，按照ti与native交互的原理，问题应该是scroll事件触发太频繁，修改UI的任务太多，导致响应慢。但是非widget方式却不存在这个问题，莫非是require会导致性能下降？真正的原因还不得而知。</p>
+<p>尝试了使用_.defer，没什么改善</p>
+<p>最后为了实现功能，只好将更新UI的代码放在了dragend事件的监听中</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Titanium/" rel="tag">#Titanium</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/02/reading/" rel="next" title="reading">
+                <i class="fa fa-chevron-left"></i> reading
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -284,8 +390,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -328,6 +443,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Titanium-ScrollView做成widget时的一些局限"><span class="nav-number">1.</span> <span class="nav-text">Titanium ScrollView做成widget时的一些局限</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -431,6 +557,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
